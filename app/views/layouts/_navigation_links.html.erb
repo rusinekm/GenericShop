@@ -1,2 +1,13 @@
 <%# add navigation links to this file %>
-<li><%= link_to 'About', page_path('about') %></li>
+<li><%= link_to 'Contact', page_path('contact') %></li>
+<li><%= link_to 'Frequently asked questions', page_path('faq') %></li>
+<li><%= link_to 'discounts', page_path('discounts') %></li>
+<% if user_signed_in? %>
+  <span class="log_in small-push-2">
+  <li class="name user_name"> <%= "logged as #{current_user.email}" %>
+  <li class="name"><%= link_to "log out", destroy_user_session_path, method: :delete %></li>
+  </span>
+<% else %>
+  <li class="name log_out small-push-6"><%= link_to "sign up", new_user_registration_path %></li>
+  <li class="name log_out small-push-6"><%= link_to "log in", new_user_session_path %></li>
+<% end %>
