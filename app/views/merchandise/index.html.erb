@@ -1,6 +1,11 @@
-soon
-
 Newest items are:
 <% @merch.each do |item| %>
-<%=item.name %>
+<div class="item_bracket">
+  <p><%=item.name %>
+  </p>
+  <%= image_tag item.photo.url %>
+  <div class="description_style">
+  <%=item.description %>
+  </div>
+</div>
 <% end %>

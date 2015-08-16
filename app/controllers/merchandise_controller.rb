@@ -2,7 +2,11 @@ class MerchandiseController < ApplicationController
   before_action :authenticate_admin!, only: [:new, :create, :update, :edit, :destroy]
   
   def index
-    @merch = Merchandise.all.last(10)
+    if params[:category]
+      @merch = Merchandise.category(param[:category]).paginate(:page => params[:page], :per_page => 10)
+    else
+      @merch = Merchandise.all.last(10)
+    end
   end
 
   def new
