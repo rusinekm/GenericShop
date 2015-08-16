@@ -24,6 +24,7 @@ class MerchandiseController < ApplicationController
   def create 
     @merchandise = Merchandise.new(merch_params)
     if @merchandise.save
+      @merchandise.assign_categories(params[:merchandise][:category_names])
       flash[:notice] = "Item created"
       redirect_to root
     else
@@ -49,7 +50,7 @@ class MerchandiseController < ApplicationController
   private
 
   def merch_params
-    params.require(:post).permit(:name, :description,  :retail_price, :buy_price, :number_available, :photo) #:category_ids =>[])
+    params.require(:merchandise).permit(:name, :description,  :retail_price, :buy_price, :number_available, :photo) #:category_ids =>[])
   end
 
 end

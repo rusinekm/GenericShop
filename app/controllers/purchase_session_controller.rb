@@ -19,7 +19,7 @@ class PurchaseSessionController < ApplicationController
     purchasesession[current_user.id] = nil
     redirect_to root_url
   end
-  
+
   private
 
   def add_items_to_cart(item_id)
@@ -29,6 +29,11 @@ class PurchaseSessionController < ApplicationController
 
 
   def finish_buying
+    @purchase = Purchase.new(user_id = current_user.id, merchandise_id = @cart)
+    if @purchase.save
   # redirect to external paying site
+  @transaction = pos.new_transaction(first_name: current_user.name, last_name: current_user.surname, email: current_user.mail, amount: @purchase.total_price, desc: 'Transaction description')
+    else
+      flash[:notice] = "Something prevented from finishing purchase"
   end
 end
