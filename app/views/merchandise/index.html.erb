@@ -9,3 +9,6 @@ Newest items are:
   </div>
 </div>
 <% end %>
+<%if @merch.count > 10 %>
+  <%= will_paginate @merch %>
+  <% end %>

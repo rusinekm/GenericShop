@@ -1,0 +1,5 @@
+
+Categories List:
+<% categories.all.each do |category| %>
+<li><%= link_to category.name, merchandise_index_path(category: category.id) %></li>
+<% end %>

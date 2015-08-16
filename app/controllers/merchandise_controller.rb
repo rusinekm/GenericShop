@@ -3,7 +3,7 @@ class MerchandiseController < ApplicationController
   
   def index
     if params[:category]
-      @merch = Merchandise.category(param[:category]).paginate(:page => params[:page], :per_page => 10)
+      @merch = Merchandise.category(params[:category]).paginate(page: params[:page], per_page: 20)
     else
       @merch = Merchandise.all.last(10)
     end
