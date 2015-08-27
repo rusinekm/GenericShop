@@ -3,11 +3,9 @@ class PayuController < ApplicationController
   skip_before_filter :verify_authenticity_token
 
   def ok
-    # successful redirect
   end
 
   def error
-    # failed redirect
   end
 
   def report
@@ -21,7 +19,7 @@ class PayuController < ApplicationController
       if response.completed? && order.present?
         # mark order as paid
       else
-        # payment not completed
+        flash[:notice] = "Payment not completed. Please try again"
       end
     end
 

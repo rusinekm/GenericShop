@@ -1,0 +1,16 @@
+<h1> Not yet applied. Only erb index copied for further changes </h1>Newest items are:
+
+
+<% @merch.each do |item| %>
+<div class="item_bracket">
+  <p><%=item.name %>
+  </p>
+  <%= image_tag item.photo.url %>
+  <div class="description_style">
+  <%=item.description %>
+  </div>
+</div>
+<% end %>
+<%if @merch.count > 10 %>
+  <%= will_paginate @merch %>
+  <% end %>
