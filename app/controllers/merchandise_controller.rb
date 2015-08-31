@@ -1,12 +1,24 @@
 class MerchandiseController < ApplicationController
   before_action :authenticate_admin!, only: [:new, :create, :update, :edit, :destroy]
-  
+  # respond_to :json 
+
   def index
     if params[:category]
-      @merch = Merchandise.category(params[:category]).paginate(page: params[:page], per_page: 20)
+
+      respond_to do |format|
+        format.html {render 'index'}
+        format.json {render json: Merchandise.category(params[:category]).paginate(page: params[:page], per_page: 20)}
+      end
     else
-      @merch = Merchandise.all.last(10)
+      respond_to do |format|
+      format.json {render json: Merchandise.last(10)}
+      format.html {render 'index'}
     end
+    end
+  end
+
+  def categories
+    render json: Category.all, root: 'categories'
   end
 
   def new

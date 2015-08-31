@@ -1,16 +1,23 @@
-<h1> Not yet applied. Only erb index copied for further changes </h1>Newest items are:
-
-
-<% @merch.each do |item| %>
-<div class="item_bracket">
-  <p><%=item.name %>
+{{#each merchandise in merchandise}}
+  <div class="presented_item">
+  <p>{{merchandise.name}}
   </p>
-  <%= image_tag item.photo.url %>
+  {{#if merchandise.photo}}
+  <img {{bind-attr src=merchandise.photo_path}} alt="thumbnail">
+  {{else}}
+    image unavailable
+  {{/if}}
   <div class="description_style">
-  <%=item.description %>
+    {{merchandise.description}}
   </div>
-</div>
-<% end %>
-<%if @merch.count > 10 %>
-  <%= will_paginate @merch %>
-  <% end %>
+  <div class="number_and_price">
+    {{#if merchandise.number_available}}
+      number in stock:  {{merchandise.number_available}}
+      price: {{merchandise.retail_price}}
+    {{else}}Item currently unavailable. Will be restocked
+    {{/if}}
+  </div>
+  </div>
+  {{else}}
+    There are no items currently in the store.
+{{/each}}

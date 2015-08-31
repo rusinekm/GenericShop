@@ -1,0 +1,12 @@
+ <div class="main-window">
+     <div class="large-2 columns">
+       {{#each category in categories}}
+       <li> {{#link-to home}}{{category.name}}{{/link-to}} </li>
+       {{else}}
+       no categories listed
+       {{/each}}
+     </div>
+     <div class="large-9 columns">
+      {{outlet}}
+    </div>
+  </div>

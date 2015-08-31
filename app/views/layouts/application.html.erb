@@ -5,8 +5,8 @@
   <title><%= content_for?(:title) ? yield(:title) : "Generic Shop" %></title>
   <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Generic Shop" %>">
   <%= stylesheet_link_tag 'application', media: 'all' %>
-   <%=javascript_include_tag 'vendor/modernizr' %>
-   <%=javascript_include_tag 'application' %>
+  <%=javascript_include_tag 'vendor/modernizr' %>
+  <%=javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -15,13 +15,8 @@
   </header>
   <main role="main">
    <%= render 'layouts/messages' %>
-   <div class="fill-height pull-left col-md-3 text-center">
-     <% @category = Category.order(:name) %>
-
-     <%= render 'layouts/categories', categories: @category %>
-
-   </div>
-   <%= yield %>
- </main>
+      <%= yield %>
+  
+</main>
 </body>
 </html>

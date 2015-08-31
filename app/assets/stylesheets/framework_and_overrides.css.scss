@@ -10,6 +10,11 @@
   color: white;
   padding: 0 15px; }
 
+.presented_item {
+  margin: 3px;
+  background-color: #ddd;}
+
+
 // THESE ARE EXAMPLES YOU CAN MODIFY
 // create mixins using Foundation classes
 @mixin twelve-columns {
